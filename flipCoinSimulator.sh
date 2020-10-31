@@ -1,11 +1,20 @@
 #!/bin/bash
 echo "welcome o flip coin simulator program"
+read -p "enter a number you want loop to run: " num
+count=0
+count1=0
 isHeads=0;
 isTails=1;
-coinFlip=$((RANDOM%2))
-if [ $isHeads -eq $coinFlip ]
+declare -A flipval
+for(( i=1;i<=num;i++ ))
+do
+ coinFlip=$((RANDOM%2))
+ if [ $coinFlip -eq 0 ]
  then
-  echo "heads is winner"
+  flipval[$i]={$i:"H"}
  else
-  echo "tails is winner"
-fi
+  flipval[$i]={$i:"T"}
+ fi
+done
+echo ${!flipval[@]}
+echo ${flipval[@]}
